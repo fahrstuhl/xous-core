@@ -19,6 +19,7 @@ pub enum KeyMap {
     Qwertz,
     Dvorak,
     Braille,
+    Neo2,
     Undefined,
 }
 impl From<usize> for KeyMap {
@@ -29,6 +30,7 @@ impl From<usize> for KeyMap {
             2 => KeyMap::Qwertz,
             3 => KeyMap::Dvorak,
             4 => KeyMap::Braille,
+            5 => KeyMap::Neo2,
             _ => KeyMap::Qwerty,
         }
     }
@@ -42,6 +44,7 @@ impl Into<usize> for KeyMap {
             KeyMap::Qwertz => 2,
             KeyMap::Dvorak => 3,
             KeyMap::Braille => 4,
+            KeyMap::Neo2 => 5,
             KeyMap::Undefined => 255,
         }
     }
