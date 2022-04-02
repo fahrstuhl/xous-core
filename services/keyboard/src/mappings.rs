@@ -8,5 +8,8 @@ mod azerty;
 pub (crate) use azerty::*;
 mod dvorak;
 pub (crate) use dvorak::*;
-mod neo2;
-pub (crate) use neo2::*;
+#[cfg(feature="neo2")]
+{
+    mod neo2;
+    pub (crate) use neo2::*;
+}

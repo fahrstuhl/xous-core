@@ -28,4 +28,5 @@ utralib = {path = "../../utralib"}
 debugprint = []
 debuginject = [] # used only if you want key injection via the UART
 braille = []
+neo2 = []
 default = ["debuginject"] # "debugprint"
