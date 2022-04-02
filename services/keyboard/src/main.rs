@@ -483,6 +483,18 @@ mod implementation {
                             }
                         }
                     },
+                    KeyMap::Neo2 => { // Neo only has left shift
+                        if ((rc.r == 8) && (rc.c == 5)) {
+                            // if the shift key was tapped twice, remove the shift modifier
+                            if self.shift_up == false {
+                                //info!("shift down true");
+                                self.shift_down = true;
+                            } else {
+                                //info!("shift up false");
+                                self.shift_up = false;
+                            }
+                        }
+                    },
                     _ => { // the rest just have one color of shift
                         if ((rc.r == 8) && (rc.c == 5)) || ((rc.r == 8) && (rc.c == 9)) {
                             // if the shift key was tapped twice, remove the shift modifier
@@ -512,6 +524,20 @@ mod implementation {
                             }
                             self.shift_down = false;
                         } else {
+                            keyups_noshift.push(RowCol{r: rc.r as _, c: rc.c as _});
+                        }
+                    },
+                    KeyMap::Neo2 => { // Neo only has left shift
+                        if ((rc.r == 8) && (rc.c == 5)) {
+                            // only set the shift-up if we didn't previously clear it with a double-tap of shift
+                            if self.shift_down {
+                                //info!("shift up true");
+                                self.shift_up = true;
+                            }
+                            //info!("shift down false");
+                            self.shift_down = false;
+                        } else {
+                            //info!("adding non-shift entry {:?}", rc);
                             keyups_noshift.push(RowCol{r: rc.r as _, c: rc.c as _});
                         }
                     },
